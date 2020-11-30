@@ -1,17 +1,14 @@
 const initialState = {
-    userId: '',
-    first_name: '',
-    last_name: '',
     email: ''
 }
 
 // const GET_USER = 'GET_USER'
-const LOGIN_USER = "LOGIN_USER";
+const GET_USER = 'GET_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 
-export function loginUser(user){
+export function getUser(user){
     return {
-        type: LOGIN_USER,
+        type: GET_USER,
         payload: user 
     }
 }
@@ -25,8 +22,8 @@ export function logoutUser() {
 
 export default function reducer(state = initialState, action) {
     switch(action.type){
-        case LOGIN_USER:
-            return {...state, userId: action.payload.userId, first_name: action.payload.username, last_name: action.payload.profilePic, email: action.payload.email}
+        case GET_USER:
+            return {...state, email: action.payload.email}
         case LOGOUT_USER:
             return initialState; 
         default:

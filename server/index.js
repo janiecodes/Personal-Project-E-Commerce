@@ -32,9 +32,9 @@ massive({
 }).catch( err => console.log(err));
 
 //ENDPOINTS - USER
-app.post('/register', userCtrl.registerUser)
-app.post('/login', userCtrl.loginUser)
-app.post('/logout', userCtrl.logoutUser)
+app.post('/auth/register', userCtrl.registerUser)
+app.post('/auth/login', userCtrl.loginUser)
+app.post('/auth/logout', userCtrl.logoutUser)
 app.get('/auth', checkUser, userCtrl.getUser)
 
 //ENDPOINTS - PRODUCT

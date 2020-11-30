@@ -26,24 +26,21 @@ const Nav = (props) => {
                 <Link to={`/`}>Support</Link>
 
                 <Link className='search-button'>Search</Link>
-                
+
                 <div className='nav-cart-dropdown'>
                     <button onClick={cartDropdown} className='cart-dropdown'>Cart</button>
                     {toggle ?
                     <div className='dropdown-content'>
-                        <Link to={`/checkout`}>Check Out</Link>
-                        <Link to={`/cart`}>Bag</Link>
-                        <Link to={`/`}>Favorites</Link>
-                        <Link to={`/`}>Orders</Link>
-                        <Link to={`/`}>Account</Link>
-                        <Link to={`/auth`}>Sign in</Link>
+                        <Link className='dropdown-link' to={`/checkout`}>Check Out</Link>
+                        <Link className='dropdown-link' to={`/cart`}>Bag</Link>
+                        <Link className='dropdown-link' to={`/`}>Favorites</Link>
+                        <Link className='dropdown-link' to={`/`}>Orders</Link>
+                        <Link className='dropdown-link' to={`/`}>Account</Link>
+                        <Link className='dropdown-link' to={`/auth`}>Sign in</Link>
                     </div>
                     : null }      
                 </div>
-                
-                
             </a>
-        
        </div>
     )
 }

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     registerUser: async (req, res) => {
         const db = req.app.get('db')
-        const {first_name, last_name, country, birthday, email, password, phone_number } = req.body
+        const {firstName, lastName, country, birthday, email, password, phoneNumber } = req.body
         try {
             const [foundUser] = await db.users.get_user(email)
             if(foundUser){
@@ -11,7 +11,7 @@ module.exports = {
             }else{
                 const salt = bcrypt.genSaltSync(10)
                 const hash = bcrypt.hashSync(password, salt)
-                const [newUser] = await db.users.register_user([first_name, last_name, country, birthday, email, hash, phone_number ])
+                const [newUser] = await db.users.register_user([firstName, lastName, country, birthday, email, hash, phoneNumber ])
                 req.session.user = newUser
                 res.status(200).send(req.session.user)
             }
@@ -39,7 +39,7 @@ module.exports = {
                     res.status(401).send('Email or password incorrect')
                 }
             }else{
-                res.status(401).send('Email or password incorrect')
+                res.status(401).send('Founder User Issue: Email or password incorrect')
             }
         }catch(err){
             console.log('Database error on login function', err)
