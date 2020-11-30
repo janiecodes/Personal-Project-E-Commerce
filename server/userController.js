@@ -30,6 +30,7 @@ module.exports = {
             if(foundUser){
                 const comparePassword = foundUser.password
                 const authenticated = bcrypt.compareSync(password, comparePassword)
+                
                 if(authenticated){
                     delete foundUser.password 
                     req.session.user = foundUser
