@@ -1,0 +1,29 @@
+.nav-component {
+    height: 10vh;
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.apple-logo {
+    height: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: #c2c2c2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-message{
+    background-color: #e34041;
+    height: 15vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

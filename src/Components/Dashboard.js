@@ -3,6 +3,7 @@ import axios from 'axios';
 import DashProduct from './DashProduct'
 import {connect} from 'react-redux'
 
+
 const Dashboard = (props) => {
 
     //store products on Dashboard
@@ -24,8 +25,11 @@ const Dashboard = (props) => {
 
 
     return (
-        <div>
-            <h1>Dashboard</h1>
+        <div className='dashboard-component'>
+            <h1>Dashboard Page</h1>
+            <section className='dashboard-message'> 
+                <p>Shop early online to get all your gifts in time for the holidays. And get Specialist help, free no-contact delivery, and more. Learn more ></p>
+            </section>
             <ul style={{listStyle: 'none'}}>{mappedProducts}</ul> 
         </div>
     )

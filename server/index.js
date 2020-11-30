@@ -35,7 +35,7 @@ massive({
 app.post('/auth/register', userCtrl.registerUser)
 app.post('/auth/login', userCtrl.loginUser)
 app.post('/auth/logout', userCtrl.logoutUser)
-app.get('/auth/register', checkUser, userCtrl.getUser)
+app.get('/auth/me', checkUser, userCtrl.getUser)
 
 //ENDPOINTS - PRODUCT
 app.get('/products', productCtrl.getAllProducts)

@@ -26,7 +26,7 @@ export function logoutUser() {
 export default function reducer(state = initialState, action) {
     switch(action.type){
         case LOGIN_USER:
-            return {...state, userId: action.payload.userId, username: action.payload.username, profilePic: action.payload.profilePic, isLoggedIn: true}
+            return {...state, userId: action.payload.userId, first_name: action.payload.username, last_name: action.payload.profilePic, email: action.payload.email}
         case LOGOUT_USER:
             return initialState; 
         default:
