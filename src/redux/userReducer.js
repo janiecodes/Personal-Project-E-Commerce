@@ -2,7 +2,7 @@ const initialState = {
     email: ''
 }
 
-// const GET_USER = 'GET_USER'
+
 const GET_USER = 'GET_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 

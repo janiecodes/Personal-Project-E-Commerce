@@ -1,5 +1,12 @@
+import {connect} from 'react-redux';
+import { useEffect } from "react";
+import {getCart} from '../redux/cartReducer'
 
 const Cart = (props) => {
+
+    useEffect(() => {
+        props.getCart()
+    }, [])
 
 
     return (
@@ -16,4 +23,5 @@ const Cart = (props) => {
     )
 }
 
-export default Cart;
+const mapStateToProps = (state) => state;
+export default connect(mapStateToProps, {getCart})(Cart)

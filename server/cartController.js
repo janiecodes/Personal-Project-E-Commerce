@@ -31,11 +31,13 @@ module.exports = {
 
     addProductToCart: async (req, res) => {
         const db = req.app.get('db')
-        const {product_id, quantity} = req.body
+        const {quantity} = req.body
+        const {id} = req.params
         const {user_id} = req.session.user
 
         try {
-            const cart = await db.cart.add_product_to_cart([+user_id, +product_id, +quantity])
+            const cart = await db.cart.add_product_to_cart([+user_id, +id, +quantity])
+            console.log('HIT')
             res.status(200).send(cart)
         }catch(err){
             console.log(`Error adding product to cart`, err)

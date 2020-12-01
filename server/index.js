@@ -39,12 +39,12 @@ app.get('/auth', checkUser, userCtrl.getUser)
 
 //ENDPOINTS - PRODUCT
 app.get('/products', productCtrl.getAllProducts)
-app.get('/product/:name', productCtrl.getOneProduct)
+app.get('/product/:id', productCtrl.getOneProduct)
 
 //ENDPOINTS - CART
-app.get('/cart/user', checkUser, cartCtrl.getCartByUser)
-app.put('/cart/product/:id', checkUser, cartCtrl.editProductInCart)
-app.post('/cart/product/:id', checkUser, cartCtrl.addProductToCart)
-app.delete('/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)
+app.get('/api/cart', checkUser, cartCtrl.getCartByUser)
+app.put('/api/cart/product/:id', checkUser, cartCtrl.editProductInCart)
+app.post('/api/cart/product/:id', checkUser, cartCtrl.addProductToCart)
+app.delete('/api/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)
 
 app.listen(SERVER_PORT, () => console.log(`Connected to port ${SERVER_PORT}`))

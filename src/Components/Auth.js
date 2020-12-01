@@ -1,34 +1,53 @@
-import { useState} from "react";
+import {useState} from "react";
 import {Link} from 'react-router-dom';
 import {getUser} from '../redux/userReducer'
 import {connect} from 'react-redux'
+import axios from 'axios'
+import { useHistory } from "react-router-dom";
 
+const Auth = ({getUser}) => {
+    const [state, setState] = useState({
+        email: '',
+        password: ''
+    })
 
+    const history = useHistory();
 
-const Auth = (props) => {
+    const loginUser = async (e) => {
+        e.preventDefault()
+        const {
+            email,
+            password,
+        } = state;
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
+    try {
+        const user = await axios.post(`auth/login`, {email, password})
+        getUser(user.data)
+        history.push('/')
+    }catch(error){
+        console.log(error)
+    }
+    }
+    const changeHandler = e => setState({...state, [e.target.name]: e.target.value})
     return(
         <div className='auth-component'>
             <h1>Please sign in.</h1>
             
-            <form className='auth-sign-in'>
+            <form className='auth-sign-in' onSubmit={(e) => loginUser(e)}>
             <input
             placeholder='Apple ID'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name='email'
+            onChange={(e) => changeHandler(e)}
             />
             <input
             placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name='password'
+            onChange={(e) => changeHandler(e)}
             />
             <section>
                 <p>Your Apple ID is the email address you use to sign in to iTunes, the App Store, and iCloud.</p>
             </section>
-            <button onClick={getUser}>Sign In</button>
+            <button type='submit'>Sign In</button>
             </form>
             <p className='auth-text'>For your Apple ID or password?</p>
             <Link className='auth-registration-link' to={'/register'}>Don't have an Apple Id? Create one now.</Link>
