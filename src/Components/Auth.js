@@ -1,5 +1,8 @@
 import { useState} from "react";
 import {Link} from 'react-router-dom';
+import {getUser} from '../redux/userReducer'
+import {connect} from 'react-redux'
+
 
 
 const Auth = (props) => {
@@ -25,7 +28,7 @@ const Auth = (props) => {
             <section>
                 <p>Your Apple ID is the email address you use to sign in to iTunes, the App Store, and iCloud.</p>
             </section>
-            <button onClick={props.loginUser}>Sign In</button>
+            <button onClick={getUser}>Sign In</button>
             </form>
             <p className='auth-text'>For your Apple ID or password?</p>
             <Link className='auth-registration-link' to={'/register'}>Don't have an Apple Id? Create one now.</Link>
@@ -35,8 +38,9 @@ const Auth = (props) => {
 }
 
 
+const mapStateToProps = (state) => state;
+export default connect(mapStateToProps, { getUser })(Auth);
 
-export default Auth;
 
 
 //button to login - componentDidMount
