@@ -20,7 +20,7 @@ module.exports = {
         const {user_id} = req.session.user
 
         try {
-            const cart = await db.cart.edit_product_in_cart([+user_id, +id, quantity])
+            const cart = await db.cart.edit_product_in_cart([+user_id, +id, +quantity])
             res.status(200).send(cart)
         }catch(err){
             console.log(`You cannot edit this cart`, err)

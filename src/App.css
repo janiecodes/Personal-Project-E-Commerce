@@ -67,3 +67,17 @@ a {
     height: 50px;
     width: 50px;
 }
+
+
+.cart-product-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.edit-quantity-dropdown {
+    background-color: #f5f5f7;
+    min-width: 160px;
+    padding: 12px 16px;
+    border: none;
+}
