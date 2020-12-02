@@ -3,4 +3,3 @@ INSERT INTO cart
 VALUES
 ($1, $2, 1);
 
-SELECT * FROM cart ORDER BY product_id;

@@ -66,7 +66,7 @@ const Register = ({getUser}) => {
       <form onSubmit={(e) => registerUser(e)}>
         <div className="register-form-text">
           <p>One Apple ID is all you need to access all Apple services.</p>
-          <p>Already have an Apple ID? Find it here > </p>
+          <p>Already have an Apple ID? Find it here</p>
         </div>
         <div className="register-name-input">
           <input

@@ -35,14 +35,14 @@ massive({
 app.post('/auth/register', userCtrl.registerUser)
 app.post('/auth/login', userCtrl.loginUser)
 app.post('/auth/logout', userCtrl.logoutUser)
-app.get('/auth', checkUser, userCtrl.getUser)
+app.get('/auth/me', checkUser, userCtrl.getUser)
 
 //ENDPOINTS - PRODUCT
 app.get('/products', productCtrl.getAllProducts)
 app.get('/product/:id', productCtrl.getOneProduct)
 
 //ENDPOINTS - CART
-app.get('/api/cart', checkUser, cartCtrl.getCartByUser)
+app.get('/api/cart/me', checkUser, cartCtrl.getCartByUser)
 app.put('/api/cart/product/:id', checkUser, cartCtrl.editProductInCart)
 app.post('/api/cart/product/:id', checkUser, cartCtrl.addProductToCart)
 app.delete('/api/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)

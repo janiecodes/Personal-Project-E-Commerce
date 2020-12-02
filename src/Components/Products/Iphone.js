@@ -5,7 +5,7 @@ const Iphone = (props) => {
     const addItem = () => {
         axios   
             .post(`/api/cart/product/${props.productId}`)
-            .then((res) => this.props.history.push(`/cart`))
+            .then((res) => this.props.history.push(`/cart/me`))
             .catch(err => console.log(err))
     }
 
@@ -17,7 +17,7 @@ const Iphone = (props) => {
                 <h1>Blast past fast.</h1>
                 <p>From $29.12/mo. or $699 before trade-in</p>
                 <button>Buy</button>
-                <p>Learn more ></p>
+                <p>Learn more</p>
                 <img alt='iPhone' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUr4EOO_MBB7DQeM88KdTEWz6IHQQLr8AUrA&usqp=CAU'/>
             </div>
             <div className='iphone-products'>
