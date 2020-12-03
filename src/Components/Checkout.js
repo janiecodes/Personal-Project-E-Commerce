@@ -1,25 +1,47 @@
+import {Link} from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios'
+import React, { Component } from 'react';
 
-const Checkout = (props) => {
 
+class Checkout extends Component {
+    constructor(props){
+        super(props);
+    
+      }
 
+   onToken = (token) => {
+        console.log(token);
+        console.log(this.props.cartTotal)
+        token.card = void 0;
+        axios.post('/api/checkout', { token, price: (this.props.cartTotal)})
+        .then(response => {
+          alert('Transaction Successful')
+        }).catch( (err)=> console.log(err))
+      }
 
-
-
+    render() {
     return (
         <div className='checkout-component'>
             <header>
                 <h3>Checkout</h3>
-                <p>Show Order Summary: $5000</p>
+                <p>Show Order Summary: {this.props.cartTotal}</p>
             </header>
-
-            <div className='checkout-delivery'>
-                <h1>How would you like to get your order?</h1>
-                <button>I'd like it delivered</button> <button>I'll pick it up</button>
-
+            
+            <div className="stripeCheckout">
+                  <StripeCheckout
+                    description={ "Apple Clone Demonstration" }
+                    token={this.onToken}
+                    stripeKey={ process.env.REACT_APP_PUB_KEY}
+                    amount={(this.props.cartTotal)}
+                  />
             </div>
+            <Link to="/"><p className="continueShopping">CONTINUE SHOPPING</p></Link>
+
+
             
         </div>
     )
+    }
 }
-
 export default Checkout;

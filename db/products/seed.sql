@@ -29,3 +29,9 @@ VALUES
 ('MacBook Air', 1249, 'Gold', '512GB'),
 ('MacBook Air', 1249, 'Silver', '512GB');
 
+ALTER TABLE products
+ADD img varchar(2000)
+
+UPDATE products
+SET img =''
+WHERE product_id = 1

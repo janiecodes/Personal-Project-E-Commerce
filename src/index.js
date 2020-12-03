@@ -6,6 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import {HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux'
 import store from './redux/store';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>

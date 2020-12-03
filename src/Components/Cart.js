@@ -1,8 +1,11 @@
+
 import {connect} from 'react-redux';
 import {useEffect, useState} from "react";
 import {getCart} from '../redux/cartReducer'
 import axios from 'axios'
 import CartItem from './CartItem'
+import {Link} from 'react-router-dom';
+
 
 const Cart = (props) => {
 
@@ -14,9 +17,9 @@ const Cart = (props) => {
     const total = () => {
         let totalVal = 0; 
         for (let i = 0; i < props.cart.cart.length; i ++){
-            totalVal += props.cart.cart[i].product_price
+            totalVal += props.cart.cart[i].product_price * props.cart.cart[i].quantity
         }
-        setCartTotal(totalVal)
+        setCartTotal(totalVal)  
     }
 
     // function quantityDropdown(){
@@ -36,18 +39,22 @@ const Cart = (props) => {
     }
 
     const deleteProduct = async (productId) => {
+        
         try {
         const cart = await axios.delete(`/api/cart/product/${productId}`)
         setCart(cart.data)
+        props.getCart()
         }catch(error){
             console.log(error)
         }
+        console.log("DELETE")
     }
 
     useEffect(() => {
+        console.log('HIT')
         props.getCart()
         total()
-    }, [props.cart.cart])
+    }, [JSON.stringify(props.cart.cart)])
 
     const mappedCart = props.cart.cart.map((product) => {
         return <CartItem 
@@ -95,6 +102,7 @@ const Cart = (props) => {
             <h4>Free delivery and free returns.</h4>
             <ul style={{listStyle:'none'}}>{mappedCart}</ul>
             Total: {cartTotal} 
+            <Link to={`/checkout`}>Checkout</Link>
         </div>
     )
 }

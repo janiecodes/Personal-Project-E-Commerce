@@ -1,45 +1,65 @@
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-const CartItem = ({product: {product_name, product_color, product_id, product_price}, quantity, deleteProduct, editQuantity}) => {
+const CartItem = ({product: {img, product_name, product_color, product_id, quantity: initialQuantity, product_price}, deleteProduct, editQuantity}) => {
 
   const [toggle, setToggle] = useState(false)
-  const [num, setQuantity] = useState('1')
+  const [quantity, setQuantity] = useState('1')
+  const [priceChange, setPriceChange] = useState('')
+
+//   onChange = () => {
+
+//   }
+  
 //   function quantityDropdown(){
 //         setToggle(!toggle)
 //     }
+    useEffect(() => {
+        setPriceChange(product_price * quantity)
+    }, [quantity])
+
+    useEffect(() => {
+        setQuantity(initialQuantity)
+    }, [])
 
   return (
     <div className="cart-product-info">
-      <h1>{product_name}</h1>
-      <h2>{product_color}</h2>
-      <div className="quantity-dropdown">
+        <div>
+            <img className ='cart-product-img' alt='apple' src={img}/>
+        </div>
+      <h1 className ='cart-product-name'>{product_name}</h1>
+      <h2 className ='cart-product-color'>{product_color}</h2>
+      <div className='cart-product-quantity'>
         <div
           onClick={() => {setToggle(!toggle)}}
-          className="dropdown-btn"
+          className="cart-product-quantity-button"
           type="button"
         >
-          {`${num}`}
+          {`${quantity}`}
         </div>
         {toggle ? (
           <ul style={{ listStyle: "none" }}>
             {[...Array(3).keys()].map((quantity) => (
               <li className="edit-quantity-dropdown" key={`input: ${quantity}`}>
                 <input
+                className="dropdown-item"
                   type="button"
                   value={quantity + 1}
                   onClick={() => {editQuantity(product_id, quantity + 1)
                  setQuantity(quantity + 1)  
                 }}
-                  className="dropdown-item"
+                 
                 />
               </li>
             ))}
           </ul>
         ) : null}
       </div>
-      <h2>{product_price}</h2>
-      <button onClick={() => deleteProduct(product_id)}>Remove</button>
+      <h2 className ='cart-product-price'>${priceChange}.00</h2>
+      <div className='cart-remove-button'>
+        <button onClick={() => deleteProduct(product_id)}>Remove</button>
+      </div>
+      
     </div>
   );
 };

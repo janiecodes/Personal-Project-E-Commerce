@@ -7,10 +7,18 @@ const cartCtrl = require('./cartController.js')
 const session = require('express-session');
 const {checkUser} = require('./middleware')
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const path = require('path');
+
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, SECRET_KEY, REACT_APP_PUB_KEY} = process.env;
+const stripe = require('stripe')(SECRET_KEY);
 const app = express();
 
 app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use(session({
     resave: false,
@@ -46,5 +54,45 @@ app.get('/api/cart/me', checkUser, cartCtrl.getCartByUser)
 app.put('/api/cart/product/:id', checkUser, cartCtrl.editProductInCart)
 app.post('/api/cart/product/:id', checkUser, cartCtrl.addProductToCart)
 app.delete('/api/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)
+
+//STRIPE
+app.post('/api/checkout', function(req, res, next) {
+    console.log("stripe-routes.js 9 | route reached", req.body);
+  let { price, id } = req.body;
+  console.log("Beginning payment");
+  const amountArray = price.toString().split('');
+  const total = [];
+  for (var i = 0; i < amountArray.length; i++) {
+    if(amountArray[i] === ".") {
+      if (typeof amountArray[i + 1] === "string") {
+        total.push(amountArray[i + 1]);
+      } else {
+        total.push("0");
+      }
+      if (typeof amountArray[i + 2] === "string") {
+        total.push(amountArray[i + 2]);
+      } else {
+        total.push("0");
+      }
+    	break;
+    } else {
+    	total.push(amountArray[i])
+    }
+  }
+  const convertedAmt = parseInt(total.join(''));
+console.log("amt", convertedAmt);
+const charge = stripe.charges.create({
+amount: convertedAmt, // amount in cents, again
+currency: 'usd',
+source: req.body.token.id,
+description: 'Test charge from react app'
+}, function(err, charge) {
+  if (err) {
+    console.error(err);
+    return res.sendStatus(500)
+  }
+  return res.sendStatus(200);
+});
+});
 
 app.listen(SERVER_PORT, () => console.log(`Connected to port ${SERVER_PORT}`))

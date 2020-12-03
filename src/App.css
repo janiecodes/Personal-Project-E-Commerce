@@ -75,8 +75,14 @@ a {
     justify-content: space-evenly;
 }
 
+.cart-product-quantity-button{
+    height: 50px;
+    width: 50px;
+    font-size: 16px;
+}
+
 .edit-quantity-dropdown {
-    background-color: #f5f5f7;
+    background-color: pink;
     min-width: 160px;
     padding: 12px 16px;
     border: none;
