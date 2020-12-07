@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faApple } from '@fortawesome/free-brands-svg-icons'
 import { faSearch, faShoppingBag} from '@fortawesome/free-solid-svg-icons'
+import {logoutUser} from '../redux/userReducer'
 
+import {connect} from 'react-redux'
 
 library.add(faApple, faSearch, faShoppingBag)
 
-const Nav = (props) => {
+const Nav = ({logoutUser, user}) => {
 
     const [toggle, setToggle] = useState(false)
     
@@ -39,12 +41,18 @@ const Nav = (props) => {
                     <button onClick={cartDropdown} className='cart-dropdown'><FontAwesomeIcon icon="shopping-bag" size="lg"/></button>
                     {toggle ?
                     <div className='dropdown-content'>
-                        <Link className='dropdown-link' to={`/checkout`}>Check Out</Link>
-                        <Link className='dropdown-link' to={`/cart`}>Bag</Link>
-                        <Link className='dropdown-link' to={`/`}>Favorites</Link>
-                        <Link className='dropdown-link' to={`/`}>Orders</Link>
-                        <Link className='dropdown-link' to={`/`}>Account</Link>
-                        <Link className='dropdown-link' to={`/auth`}>Sign in</Link>
+                        <Link onClick={() => {setToggle(!toggle)}} className='dropdown-link' to={`/cart`}>Check Out</Link>
+                        <Link onClick={() => {setToggle(!toggle)}} className='dropdown-link' to={`/cart`}>Bag</Link>
+                        <Link onClick={() => {setToggle(!toggle)}} className='dropdown-link' to={`/`}>Favorites</Link>
+                        <Link onClick={() => {setToggle(!toggle)}} className='dropdown-link' to={`/`}>Orders</Link>
+                        <Link onClick={() => {setToggle(!toggle)}} className='dropdown-link' to={`/`}>Account</Link>
+                        {!user.isLoggedIn
+                        ? (<Link onClick={() => {setToggle(!toggle)}} className='dropdown-link' to={`/auth`}>Sign in</Link>)
+                        : (<Link onClick={() => {
+                            logoutUser() 
+                            setToggle(!toggle)}} 
+                            className='dropdown-link' 
+                            to={`/auth`}>Sign Out</Link>)} 
                     </div>
                     : null }      
                 </div>
@@ -53,4 +61,5 @@ const Nav = (props) => {
     )
 }
 
-export default Nav;
+const mapStateToProps = (state) => state;
+export default connect(mapStateToProps, {logoutUser})(Nav);
