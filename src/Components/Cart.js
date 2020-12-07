@@ -5,6 +5,8 @@ import {getCart} from '../redux/cartReducer'
 import axios from 'axios'
 import CartItem from './CartItem'
 import {Link} from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout';
+
 
 
 const Cart = (props) => {
@@ -65,6 +67,15 @@ const Cart = (props) => {
                 />
     })
 
+    const onToken = (token) => {
+        console.log(token);
+        console.log(props.cartTotal)
+        token.card = void 0;
+        axios.post('/api/checkout', { token, price: (props.cartTotal)})
+        .then(response => {
+          alert('Transaction Successful')
+        }).catch( (err)=> console.log(err))
+      }
     // const mappedCart = props.cart.cart.map((product, index) => {
     //     return (
             
@@ -98,11 +109,21 @@ const Cart = (props) => {
 
     return (
         <div className='cart-component'>
-            <h1>Review your bag.</h1>
-            <h4>Free delivery and free returns.</h4>
+            <h1 className='cart-review-text'>Review your bag.</h1>
+            <h4 className='cart-return-text'>Free delivery and free returns.</h4>
             <ul style={{listStyle:'none'}}>{mappedCart}</ul>
-            Total: {cartTotal} 
-            <Link to={`/checkout`}>Checkout</Link>
+            <div className='cart-total'>
+                <div className='cart-total-text'>Total:</div> 
+                <div className='cart-total-number'> ${cartTotal}</div>
+            </div>
+            <div className="stripeCheckout">
+                  <StripeCheckout
+                    description={ "Apple Clone Demonstration" }
+                    token={onToken}
+                    stripeKey={ process.env.REACT_APP_PUB_KEY}
+                    amount={(props.cartTotal)}
+                  />
+            </div>
         </div>
     )
 }

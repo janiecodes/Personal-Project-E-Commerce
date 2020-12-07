@@ -61,7 +61,7 @@ const Register = ({getUser}) => {
         </div>
       </div>
       <div className="register-header">
-        <h1>Create Your Apple ID</h1>
+        <h1 className="register-header-text">Create Your Apple ID</h1>
       </div>
       <form onSubmit={(e) => registerUser(e)}>
         <div className="register-form-text">
@@ -70,11 +70,13 @@ const Register = ({getUser}) => {
         </div>
         <div className="register-name-input">
           <input
+          className="register-first-name"
             placeholder="First name"
             onChange={(e) => changeHandler(e)}
             name='firstName'
           />
           <input
+          className="register-last-name"
             placeholder="Last name"
             onChange={(e) => changeHandler(e)}
             name="lastName"
@@ -83,11 +85,13 @@ const Register = ({getUser}) => {
         <div className="register-country-input">
           <p>COUNTRY/REGION</p>
           <input
+          className="register-USA-input"
             placeholder="United States"
             onChange={(e) => changeHandler(e)}
             name="country"
           />
           <input
+          className="register-birthday-input"
             placeholder="Birthday"
             onChange={(e) => changeHandler(e)}
             name='birthday'
@@ -136,7 +140,7 @@ const Register = ({getUser}) => {
           <input className="checkbox-phone-number" type="checkbox" />
           <p>Phone call</p>
         </div>
-        <button type='submit'>Continue</button>
+        <button className='register-button' type='submit'>Continue</button>
       </form>
     </div>
   );

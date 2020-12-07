@@ -57,7 +57,6 @@ app.delete('/api/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)
 
 //STRIPE
 app.post('/api/checkout', function(req, res, next) {
-    console.log("stripe-routes.js 9 | route reached", req.body);
   let { price, id } = req.body;
   console.log("Beginning payment");
   const amountArray = price.toString().split('');

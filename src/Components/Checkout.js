@@ -26,6 +26,7 @@ class Checkout extends Component {
             <header>
                 <h3>Checkout</h3>
                 <p>Show Order Summary: {this.props.cartTotal}</p>
+                
             </header>
             
             <div className="stripeCheckout">
@@ -36,7 +37,7 @@ class Checkout extends Component {
                     amount={(this.props.cartTotal)}
                   />
             </div>
-            <Link to="/"><p className="continueShopping">CONTINUE SHOPPING</p></Link>
+            <Link to="/cart/me"><p className="continueShopping">Review Bag</p></Link>
 
 
             

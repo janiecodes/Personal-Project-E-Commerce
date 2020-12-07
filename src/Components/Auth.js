@@ -31,25 +31,27 @@ const Auth = ({getUser}) => {
     const changeHandler = e => setState({...state, [e.target.name]: e.target.value})
     return(
         <div className='auth-component'>
-            <h1>Please sign in.</h1>
+            <h1 className='auth-title'>Please sign in.</h1>
             
             <form className='auth-sign-in' onSubmit={(e) => loginUser(e)}>
             <input
+            className='auth-input-email'
             placeholder='Apple ID'
             name='email'
             onChange={(e) => changeHandler(e)}
             />
             <input
+            className='auth-input-password'
             placeholder='Password'
             name='password'
             onChange={(e) => changeHandler(e)}
             />
             <section>
-                <p>Your Apple ID is the email address you use to sign in to iTunes, the App Store, and iCloud.</p>
+                <p className='auth-text'>Your Apple ID is the email address you use to sign in to iTunes, the App Store, and iCloud.</p>
             </section>
-            <button type='submit'>Sign In</button>
+            <button className='auth-sign-in-button' type='submit'>Sign In</button>
             </form>
-            <p className='auth-text'>For your Apple ID or password?</p>
+            <p className='auth-text-forgot'>Forgot your Apple ID or password?</p>
             <Link className='auth-registration-link' to={'/register'}>Don't have an Apple Id? Create one now.</Link>
         </div>
     )
