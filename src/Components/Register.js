@@ -108,19 +108,8 @@ const Register = ({getUser}) => {
             onChange={(e) => changeHandler(e)}
             name='password'
           />
-          <input
-            placeholder="Confirm password"
-            onChange={(e) => changeHandler(e)}
-            name='confirmPassword'
-          />
         </div>
         <div className="register-phone-input">
-          <input
-            placeholder="+1 (United States)"
-            type="number"
-            onChange={(e) => changeHandler(e)}
-            name='areaCode'
-          />
           <input
             placeholder="Phone number"
             type="number"

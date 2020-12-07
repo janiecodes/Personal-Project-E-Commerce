@@ -1,83 +1,112 @@
 import axios from 'axios'
+import { useState } from "react";
+import { connect } from "react-redux";
+import { getCart } from "../../redux/cartReducer";
 
-const Iphone = (props) => {
+function Iphone(props){
 
-    const addItem = () => {
-        axios   
-            .post(`/api/cart/product/${props.productId}`)
-            .then((res) => this.props.history.push(`/cart/me`))
-            .catch(err => console.log(err))
+    const [productId, setId] = useRadioButtons("productId");
+
+    const [select, setSelect] = useState(false);
+  
+    function selector() {
+      setSelect(true);
     }
-
+  
+    const addItem = (e) => {
+      e.preventDefault();
+      axios
+        .post(`/api/cart/product/${productId}`)
+        .then((res) => {
+          // props.getCart();
+          props.history.push(`/cart/me`);
+        })
+        .catch((err) => console.log(err));
+    };
 
     return (
-        <div className='iphone-component'>
-            <div className='dashboard-ad'>
-                <h5>iPhone 12</h5>
-                <h1>Blast past fast.</h1>
-                <p>From $29.12/mo. or $699 before trade-in</p>
-                <button>Buy</button>
-                <p>Learn more</p>
-                <img alt='iPhone' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUr4EOO_MBB7DQeM88KdTEWz6IHQQLr8AUrA&usqp=CAU'/>
+        <div className="iphone-component">
+          <div className='iphone-header'>
+            <h3>Blast past fast.</h3>
+            <div className='iphone-content'>
+            <div className="iphone-photo">
+              {select ? (
+                <img src={`/assets/iphone-${productId}.png`} />
+              ) : (
+                <img src={`/assets/ipad-air-img.jpeg`} />
+              )}
             </div>
-            <div className='iphone-products'>
-                <h1>Which iPhone is right for you?</h1>
-                <div className='iphone-products'>
-                    <div className='first-iphone'>
-                        <img alt='iPhone 12 Pro' src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero?wid=470&amp;hei=556&amp;fmt=jpeg&amp;qlt=95&amp;op_usm=0.5,0.5&amp;.v=1604021663000'/>
-                        <h3>iPhone 12 Pro</h3>
-                        <h6>Starting at $999</h6>
-                        <h6>Super Retina XDR display</h6>
-                        <h6>5G cellular</h6>
-                        <h6>A14 Bionic chip</h6>
-                        <h6>Pro camera system</h6>
-                        <h6>LiDAR Scanner for Night mode portaits</h6>
-                        <h6>Compatible with MagSafe accessories</h6>
-                        <button onClick={addItem} value={'15'}>Buy</button>
-                    </div>
-                    <div className='second-iphone'>
-                        <img alt='iPhone 12'src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-green-select-2020?wid=470&hei=556&fmt=png-alpha&.v=1604343704000'/>
-                        <h3>iPhone 12</h3>
-                        <h6>Starting at $699</h6>
-                        <h6>Super Retina XDR display</h6>
-                        <h6>5G cellular</h6>
-                        <h6>A14 Bionic chip</h6>
-                        <h6>Pro camera system</h6>
-                        <h6>LiDAR Scanner for Night mode portaits</h6>
-                        <h6>Compatible with MagSafe accessories</h6>
-                        <button onClick={addItem} value={'16'}>Buy</button>
-                    </div>
-
-                    <div className='third-iphone'>
-                        <img alt='iPhone 11'src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-yellow-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1568141245782'/>
-                        <h3>iPhone 11</h3>
-                        <h6>Starting at $999</h6>
-                        <h6>Super Retina XDR display</h6>
-                        <h6>5G cellular</h6>
-                        <h6>A14 Bionic chip</h6>
-                        <h6>Pro camera system</h6>
-                        <h6>LiDAR Scanner for Night mode portaits</h6>
-                        <h6>Compatible with MagSafe accessories</h6>
-                        <button onClick={addItem} value={'17'}>Buy</button>
-                    </div>
-                    <div className='fourth-iphone'>
-                        <img alt='iPhone SE'src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-se-black-select-2020?wid=470&hei=556&fmt=png-alpha&.v=1586574260051'/>
-                        <h3>iPhone SE</h3>
-                        <h6>Starting at $449</h6>
-                        <h6>Super Retina XDR display</h6>
-                        <h6>5G cellular</h6>
-                        <h6>A14 Bionic chip</h6>
-                        <h6>Pro camera system</h6>
-                        <h6>LiDAR Scanner for Night mode portaits</h6>
-                        <h6>Compatible with MagSafe accessories</h6>
-                        <button onClick={addItem} value={'18'}>Buy</button>
-                    </div>
-                </div>
+    
+            <div className="iphone-info">
+              <h1>Buy iPhone Pro</h1>
+              <h3>Finish</h3>
+              <form onClick={selector} className="iphone-color">
+                <label>
+                  <input
+                    className="iphone-space-gray"
+                    name="productId"
+                    value={"19"}
+                    checked={productId === "19"}
+                    {...setId}
+                  />
+                  Space Gray
+                </label>
+                <label>
+                  <input
+                    className="iphone-silver"
+                    name="productId"
+                    value={"20"}
+                    checked={productId === "20"}
+                    {...setId}
+                  />
+                  Silver
+                </label>
+                <label>
+                  <input
+                    className="iphone-gold"
+                    name="productId"
+                    value={"21"}
+                    checked={productId === "21"}
+                    {...setId}
+                  />
+                  Gold
+                </label>
+                <label>
+                  <input
+                    className="iphone-pacific-blue"
+                    name="productId"
+                    value={"22"}
+                    checked={productId === "22"}
+                    {...setId}
+                  />
+                  Pacific Blue
+                </label>
+              </form>
+              <div className='add-to-bag-button'>
+              <button className='iphone-button' onClick={(e) => addItem(e)}>Add to Bag</button>
+              </div>
             </div>
- 
-
+            
+            </div>
+          </div>
         </div>
-    )
-}
+      );
+    }
 
-export default Iphone;
+function useRadioButtons(name) {
+    const [value, setState] = useState(null);
+  
+    const handleChange = (e) => {
+      setState(e.target.value);
+    };
+  
+    const colorChoice = {
+      name,
+      type: "radio",
+      onChange: handleChange,
+    };
+    return [value, colorChoice];
+  }
+  
+  const mapStateToProps = (state) => state;
+  export default connect(mapStateToProps, { getCart })(Iphone);

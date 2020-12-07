@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getCart } from "../../redux/cartReducer";
 
 function Ipad(props) {
+  
   const [productId, setId] = useRadioButtons("productId");
 
   const [select, setSelect] = useState(false);
@@ -81,7 +82,9 @@ function Ipad(props) {
               Green
             </label>
           </form>
+          <div className='add-to-bag-button'>
           <button className='ipad-button' onClick={(e) => addItem(e)}>Add to Bag</button>
+          </div>
         </div>
         
         </div>

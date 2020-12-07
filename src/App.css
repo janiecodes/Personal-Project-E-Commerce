@@ -4,6 +4,9 @@
     src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
   }
 
+@media screen and (min-width: 414px) {
+
+}
 .nav-component {
     height: 8vh;
     width: 100vw;
@@ -351,6 +354,74 @@ a {
 }
 
 .ipad-button {
+    width: 303px;
+    font-size: 17px;
+    font-family: SF Pro Text,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    color: white;
+    background-color: #0070c9;
+    background: linear-gradient(#42a1ec,#0070c9);
+    border: 1px solid #07c;
+    border-radius: 4px;
+}
+
+.add-to-bag-button {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.mac-component {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75vw;
+
+}
+
+.mac-title {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: radial-gradient(ellipse at center, #eff1ff 10%, #000 100%);
+    -webkit-background-clip: text;
+
+}
+
+.mac-products {
+    display: flex;
+}
+
+.macbook-color {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 125px;
+    width: 400px;
+}
+.macbook-color input[type="radio"] {
+    opacity: 0;
+    display: flex;
+    width: 0;
+}
+
+.macbook-color label {
+    width: 150px;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d6d6d6;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.macbook-button {
     width: 303px;
     font-size: 17px;
     font-family: SF Pro Text,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;

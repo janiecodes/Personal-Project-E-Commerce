@@ -1,33 +1,89 @@
+import { useState } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { getCart } from "../../redux/cartReducer";
 
-const Mac = (props) => {
+function Mac(props) {
 
+    const [productId, setId] = useRadioButtons("productId");
 
+    const [select, setSelect] = useState(false);
+
+    function selector() {
+        setSelect(true);
+      }
+
+    const addItem = (e) => {
+        e.preventDefault();
+        axios
+          .post(`/api/cart/product/${productId}`)
+          .then((res) => {
+            // props.getCart();
+            props.history.push(`/cart/me`);
+          })
+          .catch((err) => console.log(err));
+      };
 
 
     return (
         <div className='mac-component'>
-            <h1>Which Mac notebook is right for you?</h1>
-            <div className='mac-products'>
-                <div className='first-mac'>
-                    <img alt='Macbook' src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1603332211000'/>
-                    <h3>Macbook Air</h3>
-                    <button>Buy</button>
-                </div>
-                <div className='second-mac'>
-                    <img alt='Macbook' src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-silver-select-202011?wid=904&hei=840&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1603406899000'/>
-                    <h3>Macbook Pro 13''</h3>
-                    <button>Buy</button>
-                </div>
-                <div className='third-mac'>
-                    <img alt='Macbook' src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp16touch-space-select-201911?wid=904&hei=840&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1572825197207'/>
-                    <h3>Macbook Pro 16''</h3>
-                    <button>Buy</button>
-                </div>
-            </div>
+            <h1 className='mac-title'>Welcome to the future of Mac</h1>
+            <div className="macbook-photo">
+          {select ? (
+            <img src={`/assets/macbook-${productId}.jpeg`} />
+          ) : (
+            <img  src={`/assets/macbook-photo.jpg`} />
+          )}
+        </div>
 
+
+
+            <form onClick={selector} className='macbook-color'>
+                <div className='first-mac'>
+                <label>
+              <input
+                className="macbook-gold"
+                name="productId"
+                value={"13"}
+                checked={productId === "13"}
+                {...setId}
+              />
+              Gold
+            </label>
+            </div>
+                <div className='second-mac'>
+                <label>
+              <input
+                className="macbook-silver"
+                name="productId"
+                value={"14"}
+                checked={productId === "14"}
+                {...setId}
+              />
+              Silver
+            </label>
+                </div>
+            </form>
+            <button className='macbook-button' onClick={(e) => addItem(e)}>Add to Bag</button>
 
         </div>
     )
 }
 
-export default Mac;
+function useRadioButtons(name) {
+    const [value, setState] = useState(null);
+  
+    const handleChange = (e) => {
+      setState(e.target.value);
+    };
+  
+    const colorChoice = {
+      name,
+      type: "radio",
+      onChange: handleChange,
+    };
+    return [value, colorChoice];
+  }
+
+const mapStateToProps = (state) => state;
+export default connect(mapStateToProps, { getCart })(Mac);
