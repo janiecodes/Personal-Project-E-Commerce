@@ -4,12 +4,13 @@ const { EMAIL, PASSWORD } = process.env
 
 module.exports = {
     email: async (req, res) => {
-      const { name, message, email, title, image } = req.body
+      const { name, message, email, title} = req.body
+      console.log(email)
   
       try {
         //invoke the createTransport function passing in your email information. 
         let transporter = nodemailer.createTransport({
-          service: 'gmail',
+          service: 'yahoo',
           auth: {
             user: EMAIL,
             pass: PASSWORD
@@ -22,18 +23,6 @@ module.exports = {
           to: EMAIL,
           subject: title, //This will show on the subject of the email
           text: message, //for clients with plaintext support only
-          html: `<div>${message}<div> 
-                <img src="cid:unique@nodemailer.com"/>`,
-          attachments: [
-            { //this is the attachment of the document
-              filename: 'license.txt',
-              path: 'https://raw.github.com/nodemailer/nodemailer/master/LICENSE'
-            },
-            { //this is the embedded image
-              cid: 'unique@nodemailer.com', //same cid value as in the html img src
-              path:image
-            }
-          ]
         }, (err, res) => {
           if (err) {
             console.log('err', err)

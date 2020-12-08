@@ -118,14 +118,14 @@ const Cart = (props) => {
                 <div className='cart-total-number'> ${cartTotal}</div>
             </div>
             <div className="stripeCheckout">
-                  <StripeCheckout
+                  <Link to={'/ordercomplete'}><StripeCheckout
                     description={ "Apple Clone Demonstration" }
                     token={onToken}
                     stripeKey={ process.env.REACT_APP_PUB_KEY}
                     amount={(props.cartTotal)}
-                  />
+                  /></Link>
             </div>
-            <Link to={'/ordercomplete'}>Order Complete</Link>
+
         </div>
     )
 }

@@ -67,7 +67,7 @@ a {
 
 .dashboard-links {
     display: flex;  
-    flex-direction: column;
+    flex-direction: row;
 
 }
 
@@ -372,6 +372,112 @@ a {
     justify-content: center;
 }
 
+.watch-content {
+    display: flex;
+}
+
+.watch-photo{
+    padding-bottom: 80px;
+}
+
+.watch-info {
+    width: 430px;
+
+}
+.watch-color {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 230px;
+    width: 400px;
+}
+.watch-color input[type="radio"] {
+    opacity: 0;
+    display: flex;
+    width: 0;
+}
+
+.watch-color label {
+    width: 150px;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d6d6d6;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+
+.watch-button {
+    width: 303px;
+    font-size: 17px;
+    font-family: SF Pro Text,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    color: white;
+    background-color: #0070c9;
+    background: linear-gradient(#42a1ec,#0070c9);
+    border: 1px solid #07c;
+    border-radius: 4px;
+}
+
+.iphone-content {
+    display: flex;
+}
+
+.iphone-photo{
+    padding-bottom: 80px;
+}
+
+.iphone-info {
+    width: 430px;
+
+}
+.iphone-color {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 230px;
+    width: 400px;
+}
+.iphone-color input[type="radio"] {
+    opacity: 0;
+    display: flex;
+    width: 0;
+}
+
+.iphone-color label {
+    width: 150px;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #d6d6d6;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+
+.iphone-button {
+    width: 303px;
+    font-size: 17px;
+    font-family: SF Pro Text,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    min-width: 30px;
+    padding: 4px 15px;
+    text-align: center;
+    white-space: nowrap;
+    color: white;
+    background-color: #0070c9;
+    background: linear-gradient(#42a1ec,#0070c9);
+    border: 1px solid #07c;
+    border-radius: 4px;
+}
+
 .mac-component {
     margin: 0 auto;
     display: flex;
@@ -589,6 +695,11 @@ cart ul {
         justify-content: center;
         align-items: center;
         text-align: center;
+    }
+
+    .dashboard-links {
+        display: flex;  
+        flex-direction: column;
     }
 
     .ipad-air-color {

@@ -4,12 +4,14 @@ import axios from 'axios'
 
 function SMS() {
   let [name, setName] = useState('')
+  let [phoneNumber, setNumber] = useState('')
   let [message, setMessage] = useState('')
 
   async function send() {
-    let res = axios.post('/api/sendSMS', { name, message })
-    await alert(`${name}, thank you for contacting Apple Support`)
+    let res = axios.post('/api/sendSMS', { name, phoneNumber, message })
+    await alert(`${name}, thank you for your order with Apple`)
     setName('')
+    setNumber('')
     setMessage('')
   }
 
@@ -21,13 +23,19 @@ function SMS() {
           style={styles.nameInput} 
           onChange={(e) => setName(e.target.value)} 
           type='text'
-          placeholder='Name...'
+          placeholder='Name'
            />
-        <textarea 
+           <input 
+          style={styles.phoneNumber} 
+          onChange={(e) => setNumber(e.target.value)} 
+          type='text'
+          placeholder='Phone Number'
+           />
+        <input
           style={styles.message} 
           onChange={(e) => setMessage(e.target.value)}
-          placeholder='Message...'
-          ></textarea>
+          placeholder='Message'
+          ></input>
         <button 
           style={styles.button} 
           onClick={() => send()}>Send</button>
@@ -40,7 +48,7 @@ export default SMS;
 
 const styles = {
   body: {
-    background: 'blue',
+    background: 'white',
     height: '100vh',
     overflow: 'hidden',
     display:'flex',
@@ -64,6 +72,15 @@ const styles = {
     border: '1px solid black',
     outline: 'none'
   },
+
+  phoneNumber: {
+    height: 40,
+    fontSize: 35,
+    width: 350,
+    border: '1px solid black',
+    outline: 'none'
+  },
+
   message: {
     minWidth: 350,
     maxWidth: 350,
