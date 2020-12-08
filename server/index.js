@@ -4,9 +4,10 @@ const massive = require('massive');
 const userCtrl = require('./userController.js')
 const productCtrl = require('./productController.js')
 const cartCtrl = require('./cartController.js')
+const emailCtrl = require('./emailController')
 const session = require('express-session');
 const {checkUser} = require('./middleware')
-
+const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require('path');
@@ -55,6 +56,9 @@ app.put('/api/cart/product/:id', checkUser, cartCtrl.editProductInCart)
 app.post('/api/cart/product/:id', checkUser, cartCtrl.addProductToCart)
 app.delete('/api/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)
 
+//NODEMAILER
+app.post('/api/email',emailCtrl.email)
+
 //STRIPE
 app.post('/api/checkout', function(req, res, next) {
   let { price, id } = req.body;
@@ -81,7 +85,7 @@ app.post('/api/checkout', function(req, res, next) {
   const convertedAmt = parseInt(total.join(''));
 console.log("amt", convertedAmt);
 const charge = stripe.charges.create({
-amount: convertedAmt, // amount in cents, again
+amount: convertedAmt, 
 currency: 'usd',
 source: req.body.token.id,
 description: 'Test charge from react app'

@@ -4,9 +4,7 @@
     src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
   }
 
-@media screen and (min-width: 414px) {
 
-}
 .nav-component {
     height: 8vh;
     width: 100vw;
@@ -15,7 +13,16 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
 }
+
+@media screen and (max-width: 500px){
+    .nav-component {
+        background-color: green;
+        
+    }
+}
+
 
 a {
     text-decoration: none;
