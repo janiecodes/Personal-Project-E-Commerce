@@ -4,10 +4,11 @@ const massive = require('massive');
 const userCtrl = require('./userController.js')
 const productCtrl = require('./productController.js')
 const cartCtrl = require('./cartController.js')
-const emailCtrl = require('./emailController')
+const emailCtrl = require('./emailController.js')
 const session = require('express-session');
 const {checkUser} = require('./middleware')
 const nodemailer = require("nodemailer");
+const twilioCtrl= require('./twilioController.js')
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require('path');
@@ -59,33 +60,14 @@ app.delete('/api/cart/product/:id', checkUser, cartCtrl.deleteProductInCart)
 //NODEMAILER
 app.post('/api/email',emailCtrl.email)
 
+//TWILIO
+app.post('/api/sendSMS',twilioCtrl.sendSMS)
+
 //STRIPE
 app.post('/api/checkout', function(req, res, next) {
-  let { price, id } = req.body;
-  console.log("Beginning payment");
-  const amountArray = price.toString().split('');
-  const total = [];
-  for (var i = 0; i < amountArray.length; i++) {
-    if(amountArray[i] === ".") {
-      if (typeof amountArray[i + 1] === "string") {
-        total.push(amountArray[i + 1]);
-      } else {
-        total.push("0");
-      }
-      if (typeof amountArray[i + 2] === "string") {
-        total.push(amountArray[i + 2]);
-      } else {
-        total.push("0");
-      }
-    	break;
-    } else {
-    	total.push(amountArray[i])
-    }
-  }
-  const convertedAmt = parseInt(total.join(''));
-console.log("amt", convertedAmt);
+  let {price} = req.body;
 const charge = stripe.charges.create({
-amount: convertedAmt, 
+amount: price, 
 currency: 'usd',
 source: req.body.token.id,
 description: 'Test charge from react app'

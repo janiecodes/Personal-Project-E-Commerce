@@ -37,7 +37,7 @@ class Email extends Component {
     return (
       <div style={styles.body}>
         <div style={styles.form}>
-          <h1 style={styles.header}>Email Kevin</h1>
+          <h1 style={styles.header}>Email Apple Support</h1>
           <input style={styles.input} placeholder='title' type="text" name='title' value={title} onChange={this.handleInput} />
           <input style={styles.input} placeholder='name' type="text" name='name' value={name} onChange={this.handleInput} />
           <input style={styles.input} placeholder='email' type="text" name='email' value={email} onChange={this.handleInput} />

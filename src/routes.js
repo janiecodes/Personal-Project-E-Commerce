@@ -8,7 +8,9 @@ import Mac from './Components/Products/Mac'
 import Ipad from './Components/Products/Ipad'
 import Iphone from './Components/Products/Iphone'
 import Watch from './Components/Products/Watch'
-
+import OrderComplete from './Components/OrderComplete'
+import SMS from './Components/SMS'
+import Email from './Components/Email'
 
 export default (
     <Switch>
@@ -21,5 +23,8 @@ export default (
         <Route path='/watch' component={Watch}/> 
         <Route path='/cart' component={Cart}/>
         <Route path='/checkout' component={Checkout}/> 
+        <Route path='/ordercomplete' component={OrderComplete}/>
+        <Route path='/sms' component={SMS}/>
+        <Route path='/email' component={Email}/>
     </Switch>
 )

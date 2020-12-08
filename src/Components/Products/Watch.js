@@ -33,7 +33,7 @@ function Watch(props){
           {select ? (
             <img src={`/assets/applewatch-${productId}.jpeg`} />
           ) : (
-            <img src={`/assets/ipad-air-img.jpeg`} />
+            <img src={`/assets/watch-photo.jpeg`} />
           )}
         </div>
 

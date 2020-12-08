@@ -25,15 +25,15 @@ const Nav = ({logoutUser, user}) => {
   
                 <Link className='dashboard-button' to='/'><FontAwesomeIcon icon={['fab', 'apple']} size="lg"/></Link>
                 {/* <img className='apple-logo' alt='Apple' src={`/assets/apple-logo.png`}/> */}
-                
+            
                 <Link to={`/mac`}>Mac</Link>
                 <Link to={`/ipad`}>iPad</Link>
                 <Link to={`/iphone`}>iPhone</Link>
                 <Link to={`/watch`}>Watch</Link>
                 <Link to={`/`}>TV</Link>
                 <Link to={`/`}>Music</Link>
-                <Link to={`/`}>Support</Link>
-            
+                <Link to={`/email`}>Support</Link>
+      
 
                 <Link className='search-button'><FontAwesomeIcon icon="search" size="lg"/></Link>
 
@@ -56,7 +56,7 @@ const Nav = ({logoutUser, user}) => {
                     </div>
                     : null }      
                 </div>
-
+                                
        </div>
     )
 }

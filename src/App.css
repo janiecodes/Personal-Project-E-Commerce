@@ -16,16 +16,7 @@
 
 }
 
-@media screen and (max-width: 500px){
-    .nav-component {
-        background-color: green;
-        
-    }
-}
-
-
 a {
-    text-decoration: none;
     text-decoration: none;
     color: #c2c2c2;
     display: flex;
@@ -586,4 +577,38 @@ cart ul {
 
 .cart-return-text {
     font-size: 18px;
+}
+
+
+
+@media screen and (max-width: 800px){
+
+    .dashboard-message {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ipad-air-color {
+       display: flex;
+       flex-direction: column;
+       height: 70%;
+    }
+
+    .add-to-bag-button {
+        margin-right: 230px;
+    }
+
+    .cart-component {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-product-info {
+        display: flex;
+        flex-direction: column;
+    }
+
 }
